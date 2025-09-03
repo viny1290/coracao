@@ -1,0 +1,80 @@
+:root {
+    --tamanho-coracao: 30vmin;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #d0d0d0;
+    margin: 0;
+    overflow: hidden;
+    font-family: 'Arial', sans-serif;
+    color: #e91e63;
+}
+
+.container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.heart {
+    position: relative;
+    width: var(--tamanho-coracao);
+    height: calc(var(--tamanho-coracao) * 0.9);
+    margin-bottom: calc(var(--tamanho-coracao) * 0.2); 
+    animation: beat 1.2s infinite cubic-bezier(0.215, 0.610, 0.355, 1);
+}
+
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: calc(var(--tamanho-coracao) * 0.52);
+    height: calc(var(--tamanho-coracao) * 0.8);
+    border-radius: calc(var(--tamanho-coracao) / 2) calc(var(--tamanho-coracao) / 2) 0 0;
+    background: #e91e63;
+}
+
+.heart::before {
+    left: calc(var(--tamanho-coracao) / 2);
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+}
+
+.heart::after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+}
+
+@keyframes beat {
+    0% { transform: scale(0.95); }
+    5% { transform: scale(1.1); }
+    39% { transform: scale(0.85); }
+    45% { transform: scale(1); }
+    60% { transform: scale(0.95); }
+    100% { transform: scale(0.9); }
+}
+
+.phrase {
+    font-size: calc(var(--tamanho-coracao) / 4.5);
+    font-weight: bold;
+    opacity: 0;
+    animation: showPhrase 1.2s infinite cubic-bezier(0.215, 0.610, 0.355, 1);
+    animation-delay: 0.1s;
+    text-shadow: 0.2vmin 0.2vmin 0.4vmin rgba(0,0,0,0.1);
+}
+
+@keyframes showPhrase {
+    0% { opacity: 0; transform: translateY(2vmin); }
+    10% { opacity: 1; transform: translateY(0); }
+    50% { opacity: 1; transform: translateY(0); }
+    80% { opacity: 0; transform: translateY(-2vmin); }
+    100% { opacity: 0; transform: translateY(2vmin); }
+}
